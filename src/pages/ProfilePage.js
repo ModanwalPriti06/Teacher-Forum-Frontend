@@ -180,7 +180,7 @@ const ProfilePage = () => {
             </div>
           )}
 
-          {user.role === "teacher" ? 
+          {user.role === "teacher" &&
             <div className="classroom-list">
               <h3>Classrooms created by me</h3>
               <table>
@@ -203,7 +203,7 @@ const ProfilePage = () => {
                 </tbody>
               </table>
             </div>
-            :
+          }
             <div className="classroom-list">
             <h3>Classrooms joined by me</h3>
             <table>
@@ -227,7 +227,6 @@ const ProfilePage = () => {
               </tbody>
             </table>
           </div>
-          }
         </>
       ) : (
         <p>No user data found.</p>
