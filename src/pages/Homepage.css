@@ -1,0 +1,37 @@
+.classroom-list1 {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.classroom-list1 table {
+    width: 80%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.classroom-list1 th,
+.classroom-list1 td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.classroom-list1 th {
+    background-color: #F47E46;
+    color: white;
+}
+
+.classroom-list1 td {
+    color: black;
+}
+.classroom-list1 tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.classroom-list1 tr:hover {
+    background-color: #ddd;
+}
