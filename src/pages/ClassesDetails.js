@@ -108,7 +108,6 @@ const ClassesDetails = () => {
     }
     const handleClosePopup = () => {
         setShowPopup(false);  // Show the popup
-
     }
     const handleJoinRequest = async () => {
         try {
@@ -172,6 +171,7 @@ const ClassesDetails = () => {
         }
     }
     const handleCloseOtpPopup = () => {
+        console.log('dnjeb')
         setShowOtpPopup(false);
         setOtpError('');
     }
@@ -230,7 +230,7 @@ const ClassesDetails = () => {
             {showPopup && (
                 <div className="popup-overlay">
                     <div className="popup-content">
-                        <h3>Add Post</h3>
+                        <h3 className='heading1'>Add Post</h3>
                         <input
                             type="text"
                             placeholder="Title"
@@ -243,8 +243,8 @@ const ClassesDetails = () => {
                             onChange={(e) => setPostDescription(e.target.value)}
                         />
                         <div className="popup-buttons">
-                            <button onClick={handleSubmitPost}>Submit</button>
-                            <button onClick={handleClosePopup}>Close</button>
+                            <button onClick={handleClosePopup} className='closeBtn'>Close</button>
+                            <button onClick={handleSubmitPost} className='submitBtn'>Submit</button>
                         </div>
                     </div>
                 </div>
@@ -279,8 +279,8 @@ const ClassesDetails = () => {
                         {otpError && <p className="otp-error">{otpError}</p>}
 
                         <div className="popup-buttons">
-                            <button onClick={handleCloseOtpPopup}>Close</button>
-                            <button onClick={handleSubmitOtp}>Submit</button>
+                            <button onClick={handleSubmitOtp} className='submitBtn'>Submit</button>
+                            <button onClick={handleCloseOtpPopup} className='closeBtn'>Close</button>
                         </div>
                     </div></div>
             )}

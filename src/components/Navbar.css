@@ -3,8 +3,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #000;
-    color: #000;
+    background-color: #1C375D;
+    color: #1C375D;
     height: 60px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
@@ -26,7 +26,7 @@
     width: 200px;
     padding: 8px;
     border: 2px solid #fff;
-    background-color: #222;
+    background-color: #1C375D;
     color: #fff;
     border-radius: 4px;
     margin-right: 10px;

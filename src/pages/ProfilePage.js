@@ -131,7 +131,7 @@ const ProfilePage = () => {
         <div className="loading">Loading...</div>
       ) : user ? (
         <>
-          <h1>Profile</h1>
+          <h1 className="heading">Profile</h1>
           <div className="profile-info">
             <img
               src={
@@ -173,8 +173,8 @@ const ProfilePage = () => {
                 />
 
                 <div className="popup-buttons">
-                  <button onClick={() => setShowPopup(false)}>Cancel</button>
-                  <button onClick={handleCreateClassroom}>Submit</button>
+                  <button onClick={() => setShowPopup(false)} className='closeBtn'>Cancel</button>
+                  <button onClick={handleCreateClassroom} className='submitBtn'>Submit</button>
                 </div>
               </div>
             </div>
@@ -182,7 +182,7 @@ const ProfilePage = () => {
 
           {user.role === "teacher" &&
             <div className="classroom-list">
-              <h3>Classrooms created by me</h3>
+              <h3 className="classroomAccess">Classrooms created by me</h3>
               <table>
                 <thead>
                   <tr>
@@ -205,7 +205,7 @@ const ProfilePage = () => {
             </div>
           }
             <div className="classroom-list">
-            <h3>Classrooms joined by me</h3>
+            <h3 className="classroomAccess">Classrooms joined by me</h3>
             <table>
               <thead>
                 <tr>

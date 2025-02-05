@@ -13,14 +13,14 @@
     margin-bottom: 20px;
     font-size: 2rem;
     text-align: center;
-    color: #000; 
+    color: #1C375D; 
 }
 /* Form styling */
 .signup-page form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #222;
+    background-color: #1C375D;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
@@ -79,7 +79,7 @@
     width: 20%;
     padding: 10px;
     background-color: #fff;
-    color: #000;
+    color: #1C375D;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -95,7 +95,7 @@
     width: 100%;
     padding: 10px;
     background-color: #fff;
-    color: #000;
+    color: #1C375D;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -121,5 +121,5 @@
 }
 
 .login-link a:hover {
-    color: #222;
+    color: #1C375D;
 }

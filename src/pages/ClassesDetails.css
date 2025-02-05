@@ -8,8 +8,11 @@
     text-align: center;
     margin-bottom: 20px;
   }
-  
 
+  .heading1{
+    color: #1C375D;
+  }
+  
   .class-image {
     width: 200px;
     height: 200px;
@@ -21,6 +24,7 @@
   .class-name {
     font-size: 2rem;
     margin: 10px 0;
+    color: #1C375D;
   }
   .class-description {
     font-size: 1.2rem;
@@ -105,4 +109,12 @@
   .popup-buttons button {
     margin: 5px;
     padding: 8px 12px;
+  }
+
+  .popup-buttons .submitBtn{
+    background-color: #4CAF50;
+  }
+
+  .popup-buttons .closeBtn{
+    background-color: #F50057;
   }
