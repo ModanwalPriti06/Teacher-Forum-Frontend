@@ -10,7 +10,7 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [otp, setOtp] = useState("");
-  const [role, setRole] = useState("student");
+  const [role, setRole] = useState("");
   const [loading, setLoading] = useState(false); // For loading state
 
   const navigate = useNavigate();
@@ -128,6 +128,7 @@ function Signup() {
           required
         />
         <select value={role} onChange={(e) => setRole(e.target.value)}>
+          <option>Select</option>
           <option value='teacher'>Teacher</option>
           <option value='student'>Student</option>
         </select>

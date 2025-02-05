@@ -23,7 +23,7 @@ const ClassesDetails = () => {
     const fetchClassDetails = async () => {
         try {
             setLoading(true)
-            console.log("classid", classid)
+            // console.log("classid", classid)
             const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/class/getclassbyid/${classid}`, {
                 method: 'GET',
                 credentials: 'include',
@@ -132,9 +132,9 @@ const ClassesDetails = () => {
             } else {
                 toast.error(data.message || 'Failed to send join request');
             }
-
         }
         catch (error) {
+            console.log(error,error)
             toast.error('An error occurred while sending join request');
         }
     }
@@ -254,11 +254,11 @@ const ClassesDetails = () => {
             {showJoinPopup && (
                 <div className="popup-overlay">
                     <div className="popup-content">
-                        <h3>Join Request</h3>
-                        <p>Do you want to join this class? An OTP will be sent to the class owner for approval.</p>
+                        <h3 className='heading1'>Join Request</h3>
+                        <p className='joinClassContent'>Do you want to join this class? An OTP will be sent to the class owner for approval.</p>
                         <div className="popup-buttons">
-                            <button onClick={handleJoinRequest}>Send Join Request</button>
-                            <button onClick={() => setShowJoinPopup(false)}>Close</button>
+                            <button onClick={() => setShowJoinPopup(false)} className='closeBtn'>Close</button>
+                            <button onClick={handleJoinRequest} className='submitBtn'>Send Join Request</button>
                         </div>
                     </div>
 
