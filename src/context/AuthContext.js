@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
   //   Global function and login page
   const login = (userData) => {
     localStorage.setItem("user", JSON.stringify(userData)); // Save user data to localStorage
-    // setAuth({ user: userData, loading: false }); // Update the auth state
+    setAuth({ user: userData, loading: false }); // Update the auth state
   };
 
   const logout = () => {

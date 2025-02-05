@@ -1,25 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "./Navbar.css";
+import SearchPopup from '../components/SearchPopup'
 
 function Navbar() {
   const { auth, logout } = useAuth();
+  const [showPopup, setShowPopup] = useState(false);
 
+  const togglePopup = ()=>{
+    setShowPopup(!showPopup)
+  }
 
   return (
     <nav className="navbar">
       <div className="navbar-left">
         <Link to="/" className="logo"> TeacherForum </Link>{" "}
         {/*here using to is meand no need to reload page because we are using react*/}
-        <input
+        {/* <input
           type="text"
           placeholder="Search Classrooms"
           className="search-input"
-        />
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+        /> */}
+
+        <svg 
+        onClick={togglePopup}
+        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
           <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
         </svg>
+        {showPopup && <SearchPopup onClose = {togglePopup}/>}
 
       </div>
       <div className="navbar-right">
@@ -40,7 +49,7 @@ function Navbar() {
             <button className="logout-btn" onClick={logout}>Logout</button>
           </>
         ) : (
-          <Link to="/login" className="login-btn"> Login </Link>
+          <Link to="/login" className="login-btn">Login</Link>
         )}
       </div>
     </nav>

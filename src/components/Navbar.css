@@ -12,6 +12,7 @@
 .navbar-left{
     display: flex;
     align-items: center;
+    position: relative;
 }
 .logo{
     color: #fff;
