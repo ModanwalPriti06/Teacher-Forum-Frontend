@@ -74,6 +74,7 @@
 .post-card p {
   color: #666;
   font-size: 1rem;
+  text-align: justify;
 }
 
 .popup-overlay {
@@ -122,4 +123,11 @@
 
 .joinClassContent{
   margin-bottom: 15px;
+}
+.date{
+  margin-top: 5px;
+  font-weight: 600;
+  color: #F50057;
+  display: flex;
+  justify-content: right;
 }

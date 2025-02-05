@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import './Signup.css'
 import { toast } from 'react-toastify';
-
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Signup() {
   const [name, setName] = useState("");
@@ -85,7 +85,6 @@ function Signup() {
     }
   };
 
-
   return (
     <div className='signup-page'>
       <h1>Signup</h1>
@@ -107,8 +106,8 @@ function Signup() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <button type='button' onClick={handleSendOtp} className='send-otp-btn'>
-            {loading ? 'wait..' : 'Send OTP'}
+          <button type='button' onClick={handleSendOtp} className='send-otp-btn' disabled={loading}>
+            {loading ? <CircularProgress size={20} /> : 'Send OTP'}
           </button>
         </div>
         <input

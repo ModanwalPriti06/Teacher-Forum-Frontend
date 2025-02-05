@@ -16,6 +16,8 @@ import Signup from "./pages/Signup";
 import {ToastContainer, toast}  from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 const ProtectedRoute = ({ children }) => {
   const { auth, login } = useAuth();
@@ -51,7 +53,9 @@ const ProtectedRoute = ({ children }) => {
   },[]);
 
   if (loading) {
-    return <div>Loading...</div>; // You can add a spinner or loading indicator here
+    return <div>Loading...
+      <CircularProgress />
+    </div>; // You can add a spinner or loading indicator here
   }
   return auth.user ? children : <Navigate to="login" />; // Check user login or not if login then show data orelse navigate login page
 };

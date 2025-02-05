@@ -134,10 +134,7 @@ const ProfilePage = () => {
           <h1 className="heading">Profile</h1>
           <div className="profile-info">
             <img
-              src={
-                "https://th.bing.com/th/id/OIP.OWHqt6GY5jrr7ETvJr8ZXwHaHa?w=160&h=180&c=7&r=0&o=5&pid=1.7" ||
-                "default-profile.png"
-              }
+              src={ "https://picsum.photos/200" || "default-profile.png" }
               alt="Profile"
               className="profile-picture"
             />

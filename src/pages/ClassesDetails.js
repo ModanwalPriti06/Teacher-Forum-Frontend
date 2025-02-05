@@ -3,6 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import './ClassesDetails.css';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+
 
 const ClassesDetails = () => {
     const { classid } = useParams();
@@ -22,8 +25,7 @@ const ClassesDetails = () => {
     //   console.log('class',classid);
     const fetchClassDetails = async () => {
         try {
-            setLoading(true)
-            // console.log("classid", classid)
+            setLoading(true);
             const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/class/getclassbyid/${classid}`, {
                 method: 'GET',
                 credentials: 'include',
@@ -56,7 +58,6 @@ const ClassesDetails = () => {
                 });
 
                 const data = await response.json();
-
                 if (response.ok) {
                     setUser(data.data);
                 } else {
@@ -66,14 +67,13 @@ const ClassesDetails = () => {
                 toast.error('An error occurred while fetching user data');
             }
         };
-
         fetchUser();
     }, []);
 
     const handleAddPost = () => {
         setShowPopup(true);  // Show the popup
-
     }
+
     const handleSubmitPost = async () => {
         try {
             const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/class/addpost`, {
@@ -111,6 +111,7 @@ const ClassesDetails = () => {
     }
     const handleJoinRequest = async () => {
         try {
+            setLoading(true);
             const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/class/request-to-join`, {
                 method: 'POST',
                 headers: {
@@ -136,6 +137,8 @@ const ClassesDetails = () => {
         catch (error) {
             console.log(error,error)
             toast.error('An error occurred while sending join request');
+        }finally {
+            setLoading(false);
         }
     }
 
@@ -174,11 +177,7 @@ const ClassesDetails = () => {
         console.log('dnjeb')
         setShowOtpPopup(false);
         setOtpError('');
-    }
-
-    if (loading) {
-        return <div className="loading">Loading...</div>;
-    }
+    } 
 
     const isStudent = classroom?.students?.includes(user?.email);
     const isOwner = classroom?.owner == user?._id
@@ -188,10 +187,7 @@ const ClassesDetails = () => {
         <div className="class-details">
             <div className="section1">
                 <img
-                    src={
-                        "https://th.bing.com/th/id/OIP.OWHqt6GY5jrr7ETvJr8ZXwHaHa?w=160&h=180&c=7&r=0&o=5&pid=1.7" ||
-                        "default-profile.png"
-                    }
+                    src={ "https://picsum.photos/id/20/200" || "default-profile.png" }
                     alt="Classroom"
                     className="class-image"
                 />
@@ -218,7 +214,7 @@ const ClassesDetails = () => {
                             <div key={index} className="post-card">
                                 <h3>{post.title}</h3>
                                 <p>{post.description}</p>
-                                <small>{new Date(post.createdAt).toLocaleDateString()}</small>
+                                <small className='date'>{new Date(post.createdAt).toLocaleDateString()}</small>
                             </div>
                         ))
                     ) : (
@@ -250,7 +246,6 @@ const ClassesDetails = () => {
                 </div>
             )}
 
-
             {showJoinPopup && (
                 <div className="popup-overlay">
                     <div className="popup-content">
@@ -258,7 +253,9 @@ const ClassesDetails = () => {
                         <p className='joinClassContent'>Do you want to join this class? An OTP will be sent to the class owner for approval.</p>
                         <div className="popup-buttons">
                             <button onClick={() => setShowJoinPopup(false)} className='closeBtn'>Close</button>
-                            <button onClick={handleJoinRequest} className='submitBtn'>Send Join Request</button>
+                            <button onClick={handleJoinRequest} className='submitBtn' disabled={loading}>
+                            {loading ? <CircularProgress size={20} color='success'/> : 'Send Join Request'}
+                            </button>
                         </div>
                     </div>
 
