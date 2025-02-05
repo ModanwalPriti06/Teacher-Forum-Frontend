@@ -196,8 +196,8 @@ const ProfilePage = () => {
                       key={classroom._id}
                       onClick={() => handleRowClick(classroom._id)}
                     >
-                      <td>{classroom.name}</td>
-                      <td>{classroom.description}</td>
+                      <td style={{cursor:'pointer'}}>{classroom.name}</td>
+                      <td style={{cursor:'pointer'}}>{classroom.description}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -220,8 +220,8 @@ const ProfilePage = () => {
                     onClick={() => handleRowClick(classroom._id)}
                     className="clickable-row"
                   >
-                    <td>{classroom.name}</td>
-                    <td>{classroom.description}</td>
+                    <td style={{cursor:'pointer'}}>{classroom.name}</td>
+                    <td style={{cursor:'pointer'}}>{classroom.description}</td>
                   </tr>
                 ))}
               </tbody>

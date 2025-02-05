@@ -24,6 +24,7 @@ const ProtectedRoute = ({ children }) => {
 
   useEffect(()=>{
     const checkLoginStatus = async ()=>{
+      setLoading(true);  // ✅ Add this to prevent premature rendering
       try{
         const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/checklogin`, {
           method: 'GET',
@@ -45,9 +46,9 @@ const ProtectedRoute = ({ children }) => {
         setLoading(false);
       }
     }
-    checkLoginStatus()
+    checkLoginStatus();
 
-  },[navigate]);
+  },[]);
 
   if (loading) {
     return <div>Loading...</div>; // You can add a spinner or loading indicator here

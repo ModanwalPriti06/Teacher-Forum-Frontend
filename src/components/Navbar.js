@@ -1,16 +1,23 @@
-import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import { Link , useNavigate} from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "./Navbar.css";
 import SearchPopup from '../components/SearchPopup'
 
 function Navbar() {
   const { auth, logout } = useAuth();
+  const navigate = useNavigate(); // Initialize navigate hook
   const [showPopup, setShowPopup] = useState(false);
 
   const togglePopup = ()=>{
     setShowPopup(!showPopup)
   }
+    // Redirect to /login when user logs out
+    // useEffect(() => {
+    //   if (!auth.user) {
+    //     navigate("/login");
+    //   }
+    // }, [auth.user, navigate]);
 
   return (
     <nav className="navbar">
