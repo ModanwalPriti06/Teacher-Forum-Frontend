@@ -41,6 +41,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: 4px;
 }
 
 .add-post-btn:hover {

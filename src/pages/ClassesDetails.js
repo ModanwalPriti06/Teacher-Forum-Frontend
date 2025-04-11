@@ -15,6 +15,9 @@ const ClassesDetails = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [postTitle, setPostTitle] = useState('');
     const [postDescription, setPostDescription] = useState('');
+    const [uploadFile, setUploadFile] = useState('')
+    const [uploadFileDialog ,setUploadFileDialog] = useState(false);
+    const [fileTitle, setFileTitle] = useState('');
 
     const [showJoinPopup, setShowJoinPopup] = useState(false);
     const [otp, setOtp] = useState('');
@@ -72,6 +75,39 @@ const ClassesDetails = () => {
 
     const handleAddPost = () => {
         setShowPopup(true);  // Show the popup
+    }
+
+    const handleUploadFile = async() =>{
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/class/uploadFile`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title: fileTitle,
+                    file: uploadFile,
+                    classId: classid
+                }),
+                credentials: 'include',
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                toast.success('Post created successfully');
+                setUploadFile('');
+                setFileTitle('');
+                fetchClassDetails();
+                setUploadFileDialog(false); // Optionally refresh posts here
+            } else {
+                toast.error(data.message || 'Failed to create post');
+            }
+        }
+        catch (error) {
+            toast.error('An error occurred while creating the post');
+        }
+
     }
 
     const handleSubmitPost = async () => {
@@ -195,9 +231,14 @@ const ClassesDetails = () => {
                 <p className="class-description">{classroom?.description}</p>
 
                 {isOwner && (
+                    <>
                     <button className="add-post-btn" onClick={handleAddPost}>
                         Add Post
                     </button>
+                    <button className="add-post-btn" onClick={()=> setUploadFileDialog(true)}>
+                        Upload File
+                    </button>
+                    </>
                 )}
 
                 {!isStudent && !isOwner && (
@@ -212,8 +253,8 @@ const ClassesDetails = () => {
                     (isStudent || isOwner) && classroom?.posts?.length > 0 ? (
                         classroom.posts.map((post, index) => (
                             <div key={index} className="post-card">
-                                <h3>{post.title}</h3>
-                                <p>{post.description}</p>
+                                <h3>{post.title ? post.title : post.fileTitle }</h3>
+                                <p>{post.description ? post.description : post.file}</p>
                                 <small className='date'>{new Date(post.createdAt).toLocaleDateString()}</small>
                             </div>
                         ))
@@ -241,6 +282,33 @@ const ClassesDetails = () => {
                         <div className="popup-buttons">
                             <button onClick={handleClosePopup} className='closeBtn'>Close</button>
                             <button onClick={handleSubmitPost} className='submitBtn'>Submit</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {uploadFileDialog && (
+                <div className="popup-overlay">
+                    <div className="popup-content">
+                        <h3 className='heading1'>Upload File</h3>
+                        <form encType='multipart/form-data'>
+                        <input
+                            type="text"
+                            placeholder="Title"
+                            value={fileTitle}
+                            onChange={(e) => setFileTitle(e.target.value)}
+                        />
+
+                        <input
+                            type='file'
+                            name='notebookFile'
+                            value={uploadFile}
+                            onChange={(e) => setUploadFile(e.target.value)}
+                        />
+                        </form>
+                        <div className="popup-buttons">
+                            <button onClick={() => setUploadFileDialog(false)} className='closeBtn'>Close</button>
+                            <button onClick={handleUploadFile} className='submitBtn'>Submit</button>
                         </div>
                     </div>
                 </div>
